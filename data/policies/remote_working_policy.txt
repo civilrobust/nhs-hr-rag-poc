@@ -1,0 +1,36 @@
+NHS TRUST ICT DEPARTMENT - REMOTE WORKING POLICY
+Policy Reference: HR-ICT-003
+Effective Date: January 2024
+
+ELIGIBILITY
+ICT staff may work remotely up to 3 days per week subject to:
+- Successful completion of probation period
+- Role suitability for remote work
+- Manager approval
+- Adequate home broadband (minimum 30Mbps)
+
+REMOTE WORKING DAYS
+Staff must maintain at least 2 days per week office presence for team collaboration, meetings, and physical infrastructure tasks.
+
+EQUIPMENT AND SECURITY
+Trust will provide:
+- Laptop with encrypted hard drive
+- VPN access to Trust systems
+- Mobile phone for work communications
+
+Staff must:
+- Use only Trust-provided equipment for work
+- Never share login credentials
+- Ensure secure home working environment
+- Lock screens when away from desk
+
+ON-CALL REQUIREMENTS
+Staff on-call must work from location with reliable internet. If remote working impacts on-call response times, office presence may be required.
+
+DATA PROTECTION
+All NHS patient data and confidential information must be handled according to Trust Information Governance policies. No patient data may be stored on local devices.
+
+HEALTH AND SAFETY
+Staff must complete a home workstation assessment and ensure ergonomic setup meets HSE guidelines.
+
+Contact: hr.ict@nhstrust.nhs.uk

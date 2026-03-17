@@ -1,0 +1,22 @@
+NHS TRUST ICT DEPARTMENT - SICK LEAVE POLICY
+Policy Reference: HR-ICT-001
+Effective Date: January 2024
+
+SICK LEAVE ENTITLEMENT
+All ICT staff are entitled to sick leave with full pay as follows:
+- First 6 months service: Up to 1 month full pay, 2 months half pay
+- After 6 months service: Up to 2 months full pay, 2 months half pay  
+- After 1 year service: Up to 4 months full pay, 4 months half pay
+- After 2 years service: Up to 5 months full pay, 5 months half pay
+- After 5 years service: Up to 6 months full pay, 6 months half pay
+
+NOTIFICATION PROCEDURES
+Staff unable to attend work must contact line manager by telephone before scheduled start time and inform them of illness nature and expected duration. For critical systems, notify ICT Duty Manager immediately.
+
+SELF-CERTIFICATION
+Staff may self-certify for absences up to 7 calendar days. For absences exceeding 7 days, obtain a fit note from GP and submit to HR within 3 working days.
+
+RETURN TO WORK
+Line managers must conduct a return to work meeting within 3 working days of any sick leave period.
+
+Contact: hr.ict@nhstrust.nhs.uk

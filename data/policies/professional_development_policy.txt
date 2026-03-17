@@ -1,0 +1,43 @@
+NHS TRUST ICT DEPARTMENT - PROFESSIONAL DEVELOPMENT POLICY
+Policy Reference: HR-ICT-007
+Effective Date: January 2024
+
+COMMITMENT TO DEVELOPMENT
+The Trust supports ongoing professional development for ICT staff to maintain skills and deliver high-quality services.
+
+TRAINING ENTITLEMENT
+All ICT staff are entitled to:
+- Minimum 5 days training per year
+- Annual appraisal to identify development needs
+- Access to e-learning platforms
+- Support for professional certifications
+
+APPROVED CERTIFICATIONS
+Trust will fund relevant certifications including:
+- Microsoft (Azure, M365, Windows Server)
+- Cisco (CCNA, CCNP)
+- CompTIA (Security+, Network+)
+- ITIL Foundation and Practitioner
+- VMware
+- AWS/Cloud certifications
+
+Funding covers exam fees and approved training courses. Staff must achieve certification within 12 months.
+
+STUDY LEAVE
+Staff may request:
+- Up to 5 days paid study leave per year for exam preparation
+- Time off to attend courses (subject to service needs)
+- Flexible working around training schedules
+
+PROFESSIONAL BODY MEMBERSHIP
+Trust will pay annual membership fees for one relevant professional body per employee (e.g., BCS, CompTIA).
+
+TRAINING COMMITMENT
+Staff receiving certification funding must:
+- Remain employed for 12 months after qualification
+- Share knowledge with team
+- Apply skills in current role
+
+If staff leave within 12 months, pro-rata training costs may be recovered.
+
+Contact: learning.development@nhstrust.nhs.uk

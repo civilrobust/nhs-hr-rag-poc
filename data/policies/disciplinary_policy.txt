@@ -1,0 +1,38 @@
+NHS TRUST ICT DEPARTMENT - DISCIPLINARY POLICY
+Policy Reference: HR-ICT-004
+Effective Date: January 2024
+
+PURPOSE
+This policy ensures fair and consistent handling of conduct and performance issues while maintaining service standards and Trust values.
+
+SCOPE
+Applies to all ICT staff for misconduct including:
+- Unauthorized system access or data breaches
+- Persistent lateness or absence
+- Failure to follow IT security protocols
+- Inappropriate use of Trust systems
+- Insubordination or bullying
+
+INFORMAL RESOLUTION
+Minor issues should be resolved through informal discussion with line manager before formal proceedings.
+
+FORMAL DISCIPLINARY PROCESS
+Stage 1: Verbal Warning (remains on file 6 months)
+Stage 2: Written Warning (remains on file 12 months)
+Stage 3: Final Written Warning (remains on file 18 months)
+Stage 4: Dismissal
+
+INVESTIGATION
+Allegations will be investigated before disciplinary action. Staff may be suspended on full pay during serious investigations.
+
+RIGHT TO REPRESENTATION
+Staff have the right to be accompanied by a trade union representative or workplace colleague at all formal meetings.
+
+GROSS MISCONDUCT
+Serious breaches may result in immediate dismissal without notice, including:
+- Deliberate damage to Trust systems
+- Theft or fraud
+- Serious data protection breaches
+- Violence or harassment
+
+Contact: hr.ict@nhstrust.nhs.uk
