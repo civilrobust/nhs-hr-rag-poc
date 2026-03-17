@@ -56,12 +56,6 @@ function App() {
     }
   }
 
-  const handleNewChat = () => {
-    setMessages([])
-    setQuestion('')
-    setError(null)
-  }
-
   const exampleQuestions = [
     "How many days sick leave am I entitled to?",
     "Can I work from home?",
@@ -73,11 +67,6 @@ function App() {
   return (
     <div className="app-container">
       <div className="header">
-        {messages.length > 0 && (
-          <button className="new-chat-btn" onClick={handleNewChat}>
-            ← New Chat
-          </button>
-        )}
         <div className="nhs-logo">
           <div className="nhs-logo-box">NHS</div>
         </div>
@@ -202,6 +191,7 @@ function App() {
                       </span>
                     </div>
                     {(() => {
+                      // Group sources by filename
                       const grouped = msg.sources.reduce((acc, source) => {
                         if (!acc[source.source]) {
                           acc[source.source] = 0

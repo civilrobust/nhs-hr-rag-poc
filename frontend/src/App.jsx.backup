@@ -9,6 +9,7 @@ function App() {
   const [error, setError] = useState(null)
   const [stats, setStats] = useState({ chunks: 0, policies: 0 })
 
+  // Load stats on mount
   useEffect(() => {
     fetchStats()
   }, [])
@@ -56,12 +57,6 @@ function App() {
     }
   }
 
-  const handleNewChat = () => {
-    setMessages([])
-    setQuestion('')
-    setError(null)
-  }
-
   const exampleQuestions = [
     "How many days sick leave am I entitled to?",
     "Can I work from home?",
@@ -72,12 +67,8 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* Header */}
       <div className="header">
-        {messages.length > 0 && (
-          <button className="new-chat-btn" onClick={handleNewChat}>
-            ← New Chat
-          </button>
-        )}
         <div className="nhs-logo">
           <div className="nhs-logo-box">NHS</div>
         </div>
@@ -85,9 +76,11 @@ function App() {
         <p className="subtitle">Ask questions about HR policies and get instant answers</p>
       </div>
 
+      {/* Main Chat Area */}
       <div className="chat-container">
         {messages.length === 0 ? (
           <div className="welcome-screen">
+            {/* Hero Section */}
             <div className="hero-section">
               <h2>👋 Welcome to Your AI HR Assistant!</h2>
               <p className="hero-description">
@@ -96,6 +89,7 @@ function App() {
               </p>
             </div>
 
+            {/* Animated Stats */}
             <div className="stats-grid">
               <div className="stat-card">
                 <div className="stat-number">
@@ -115,6 +109,7 @@ function App() {
               </div>
             </div>
 
+            {/* How It Works */}
             <div className="how-it-works">
               <h3>🔍 How It Works</h3>
               <div className="steps-grid">
@@ -144,6 +139,7 @@ function App() {
               </div>
             </div>
 
+            {/* Example Questions */}
             <div className="examples-section">
               <h3>💬 Try Asking...</h3>
               <div className="example-questions">
@@ -160,6 +156,7 @@ function App() {
               </div>
             </div>
 
+            {/* Features */}
             <div className="features-grid">
               <div className="feature">
                 <span className="feature-icon">🎯</span>
@@ -193,34 +190,17 @@ function App() {
                 <div className="message-content">
                   {msg.text}
                 </div>
-                {msg.sources && msg.sources.length > 0 && (
+                {msg.sources && (
                   <div className="sources">
-                    <div className="sources-header">
-                      📄 Referenced Policy Sections
-                      <span className="sources-hint">
-                        Answer based on {msg.sources.length} section{msg.sources.length > 1 ? 's' : ''} from official HR policies
-                      </span>
-                    </div>
-                    {(() => {
-                      const grouped = msg.sources.reduce((acc, source) => {
-                        if (!acc[source.source]) {
-                          acc[source.source] = 0
-                        }
-                        acc[source.source]++
-                        return acc
-                      }, {})
-
-                      return Object.entries(grouped).map(([filename, count]) => (
-                        <div key={filename} className="source-group">
-                          <div className="source-filename">
-                            📄 {filename.replace(/_/g, ' ').replace('.txt', '')}
-                            {count > 1 && (
-                              <span className="section-count">{count} sections</span>
-                            )}
-                          </div>
-                        </div>
-                      ))
-                    })()}
+                    <div className="sources-header">📄 Sources:</div>
+                    {msg.sources.map((source, j) => (
+                      <div key={j} className="source-item">
+                        <span className="source-name">{source.source}</span>
+                        <span className="source-relevance">
+                          {((1 - source.distance) * 100).toFixed(0)}% relevant
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
@@ -247,6 +227,7 @@ function App() {
         )}
       </div>
 
+      {/* Input Form */}
       <form className="input-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -265,6 +246,7 @@ function App() {
         </button>
       </form>
 
+      {/* Footer */}
       <div className="footer">
         <p>💡 Powered by Llama 3.1 8B • ChromaDB • FastAPI • React</p>
         <p className="disclaimer">AI Engineering Apprenticeship POC • Synthetic Policy Documents</p>
@@ -273,6 +255,7 @@ function App() {
   )
 }
 
+// Animated Counter Component
 function AnimatedCounter({ end, duration = 2000 }) {
   const [count, setCount] = useState(0)
 

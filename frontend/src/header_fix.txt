@@ -1,0 +1,33 @@
+
+Find this in App.jsx (around line 65):
+
+      <div className="header">
+        <div className="nhs-logo">
+          <div className="nhs-logo-box">NHS</div>
+        </div>
+        <h1>NHS ICT HR Policy Assistant</h1>
+        <p className="subtitle">Ask questions about HR policies and get instant answers</p>
+      </div>
+
+Replace with:
+
+      <div className="header">
+        {messages.length > 0 && (
+          <button 
+            className="new-chat-btn"
+            onClick={() => {
+              setMessages([])
+              setQuestion('')
+              setError(null)
+            }}
+          >
+            ← New Chat
+          </button>
+        )}
+        <div className="nhs-logo">
+          <div className="nhs-logo-box">NHS</div>
+        </div>
+        <h1>NHS ICT HR Policy Assistant</h1>
+        <p className="subtitle">Ask questions about HR policies and get instant answers</p>
+      </div>
+
