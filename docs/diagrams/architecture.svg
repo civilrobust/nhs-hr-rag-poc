@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  <defs>
+    <style>
+      .title { font: bold 32px sans-serif; fill: white; }
+      .subtitle { font: 18px sans-serif; fill: white; }
+      .box { fill: white; stroke: #005eb8; stroke-width: 3; rx: 12; }
+      .nhs-box { fill: #005eb8; stroke: #003087; stroke-width: 3; rx: 12; }
+      .label { font: bold 16px sans-serif; fill: #333; }
+      .nhs-label { font: bold 18px sans-serif; fill: white; }
+      .desc { font: 12px sans-serif; fill: #666; }
+      .arrow { stroke: #005eb8; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .component { font: bold 14px sans-serif; fill: #005eb8; }
+      .tech { font: 11px sans-serif; fill: #999; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#005eb8" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="700" y="40" class="title" text-anchor="middle">NHS ICT HR Policy Assistant - System Architecture</text>
+  <text x="700" y="70" class="subtitle" text-anchor="middle">AI-Powered RAG System with Local LLM Inference</text>
+  
+  <!-- User Layer -->
+  <rect x="550" y="100" width="300" height="80" class="nhs-box"/>
+  <text x="700" y="130" class="nhs-label" text-anchor="middle">👤 HR Staff User</text>
+  <text x="700" y="155" class="nhs-label" text-anchor="middle" style="font-size: 14px">Web Browser</text>
+  <text x="700" y="175" class="nhs-label" text-anchor="middle" style="font-size: 11px">http://localhost:3000</text>
+  
+  <!-- Arrow down -->
+  <path d="M 700 180 L 700 220" class="arrow"/>
+  <text x="750" y="205" class="component">HTTP Request</text>
+  
+  <!-- Frontend Layer -->
+  <rect x="500" y="220" width="400" height="140" class="box"/>
+  <text x="700" y="250" class="label" text-anchor="middle">FRONTEND - React Application</text>
+  <text x="700" y="275" class="component" text-anchor="middle">React 18.2 + Vite 4.4</text>
+  
+  <rect x="520" y="290" width="170" height="50" style="fill: #f0f7ff; stroke: #005eb8; stroke-width: 2; rx: 8;"/>
+  <text x="605" y="310" class="desc" text-anchor="middle">• Chat Interface</text>
+  <text x="605" y="327" class="desc" text-anchor="middle">• Welcome Screen</text>
+  
+  <rect x="710" y="290" width="170" height="50" style="fill: #f0f7ff; stroke: #005eb8; stroke-width: 2; rx: 8;"/>
+  <text x="795" y="310" class="desc" text-anchor="middle">• Source Citations</text>
+  <text x="795" y="327" class="desc" text-anchor="middle">• Axios HTTP Client</text>
+  
+  <text x="700" y="355" class="tech" text-anchor="middle">JavaScript • Node.js • npm</text>
+  
+  <!-- Arrow down -->
+  <path d="M 700 360 L 700 400" class="arrow"/>
+  <text x="750" y="385" class="component">POST /api/ask</text>
+  
+  <!-- Backend Layer -->
+  <rect x="500" y="400" width="400" height="140" class="nhs-box"/>
+  <text x="700" y="430" class="nhs-label" text-anchor="middle">BACKEND - FastAPI Server</text>
+  <text x="700" y="455" class="nhs-label" text-anchor="middle" style="font-size: 14px">Port 8000 • Python 3.12</text>
+  
+  <rect x="520" y="470" width="170" height="50" style="fill: rgba(255,255,255,0.2); stroke: white; stroke-width: 2; rx: 8;"/>
+  <text x="605" y="490" class="nhs-label" text-anchor="middle" style="font-size: 12px">• REST API Endpoints</text>
+  <text x="605" y="507" class="nhs-label" text-anchor="middle" style="font-size: 12px">• Request Validation</text>
+  
+  <rect x="710" y="470" width="170" height="50" style="fill: rgba(255,255,255,0.2); stroke: white; stroke-width: 2; rx: 8;"/>
+  <text x="795" y="490" class="nhs-label" text-anchor="middle" style="font-size: 12px">• RAG Orchestration</text>
+  <text x="795" y="507" class="nhs-label" text-anchor="middle" style="font-size: 12px">• Error Handling</text>
+  
+  <text x="700" y="535" class="nhs-label" text-anchor="middle" style="font-size: 11px">FastAPI • Uvicorn • Pydantic</text>
+  
+  <!-- RAG Pipeline -->
+  <rect x="50" y="600" width="1300" height="350" style="fill: #f8f9fa; stroke: #005eb8; stroke-width: 3; rx: 12;"/>
+  <text x="700" y="635" class="label" text-anchor="middle" style="font-size: 20px;">RAG PIPELINE - Retrieval Augmented Generation</text>
+  
+  <!-- Step 1: Retrieval -->
+  <rect x="80" y="660" width="350" height="260" class="box"/>
+  <text x="255" y="690" class="component" text-anchor="middle" style="font-size: 16px;">STEP 1: RETRIEVAL</text>
+  
+  <circle cx="255" cy="720" r="30" style="fill: #005eb8;"/>
+  <text x="255" y="730" style="font: bold 24px sans-serif; fill: white;" text-anchor="middle">1</text>
+  
+  <text x="255" y="775" class="label" text-anchor="middle">ChromaDB Vector Database</text>
+  <text x="255" y="800" class="desc" text-anchor="middle">• 85 indexed policy chunks</text>
+  <text x="255" y="820" class="desc" text-anchor="middle">• Semantic similarity search</text>
+  <text x="255" y="840" class="desc" text-anchor="middle">• Sentence Transformers</text>
+  <text x="255" y="860" class="desc" text-anchor="middle">• Returns top 3 matches</text>
+  
+  <rect x="100" y="875" width="310" height="30" style="fill: #e6f2ff; rx: 6;"/>
+  <text x="255" y="895" class="tech" text-anchor="middle">Cosine Similarity • Embeddings • Vector Search</text>
+  
+  <!-- Arrow to Step 2 -->
+  <path d="M 430 790 L 520 790" class="arrow"/>
+  <text x="470" y="780" class="desc">Relevant Chunks</text>
+  
+  <!-- Step 2: Augmentation -->
+  <rect x="520" y="660" width="350" height="260" class="box"/>
+  <text x="695" y="690" class="component" text-anchor="middle" style="font-size: 16px;">STEP 2: AUGMENTATION</text>
+  
+  <circle cx="695" cy="720" r="30" style="fill: #005eb8;"/>
+  <text x="695" y="730" style="font: bold 24px sans-serif; fill: white;" text-anchor="middle">2</text>
+  
+  <text x="695" y="775" class="label" text-anchor="middle">Context Builder</text>
+  <text x="695" y="800" class="desc" text-anchor="middle">• Combines retrieved chunks</text>
+  <text x="695" y="820" class="desc" text-anchor="middle">• Builds prompt with context</text>
+  <text x="695" y="840" class="desc" text-anchor="middle">• Adds instruction templates</text>
+  <text x="695" y="860" class="desc" text-anchor="middle">• Prepares for LLM</text>
+  
+  <rect x="540" y="875" width="310" height="30" style="fill: #e6f2ff; rx: 6;"/>
+  <text x="695" y="895" class="tech" text-anchor="middle">Prompt Engineering • Context Window Management</text>
+  
+  <!-- Arrow to Step 3 -->
+  <path d="M 870 790 L 960 790" class="arrow"/>
+  <text x="910" y="780" class="desc">Augmented Prompt</text>
+  
+  <!-- Step 3: Generation -->
+  <rect x="960" y="660" width="370" height="260" class="nhs-box"/>
+  <text x="1145" y="690" class="nhs-label" text-anchor="middle" style="font-size: 16px;">STEP 3: GENERATION</text>
+  
+  <circle cx="1145" cy="720" r="30" style="fill: white;"/>
+  <text x="1145" y="730" style="font: bold 24px sans-serif; fill: #005eb8;" text-anchor="middle">3</text>
+  
+  <text x="1145" y="775" class="nhs-label" text-anchor="middle">Ollama + Llama 3.1 8B</text>
+  <text x="1145" y="800" class="nhs-label" text-anchor="middle" style="font-size: 12px;">• Local LLM inference</text>
+  <text x="1145" y="820" class="nhs-label" text-anchor="middle" style="font-size: 12px;">• Reads context chunks</text>
+  <text x="1145" y="840" class="nhs-label" text-anchor="middle" style="font-size: 12px;">• Generates natural answer</text>
+  <text x="1145" y="860" class="nhs-label" text-anchor="middle" style="font-size: 12px;">• Includes citations</text>
+  
+  <rect x="980" y="875" width="330" height="30" style="fill: rgba(255,255,255,0.2); stroke: white; stroke-width: 1; rx: 6;"/>
+  <text x="1145" y="895" class="nhs-label" text-anchor="middle" style="font-size: 11px;">GPU Accelerated • RTX 5080 • 4.9GB Model</text>
+  
+  <!-- Data Source -->
+  <rect x="50" y="750" width="0" height="0"/>
+  <rect x="1230" y="410" width="150" height="100" style="fill: #fff3cd; stroke: #856404; stroke-width: 2; rx: 8;"/>
+  <text x="1305" y="435" style="font: bold 14px sans-serif; fill: #856404;" text-anchor="middle">📄 Data Source</text>
+  <text x="1305" y="460" style="font: 12px sans-serif; fill: #856404;" text-anchor="middle">10 HR Policies</text>
+  <text x="1305" y="480" style="font: 11px sans-serif; fill: #856404;" text-anchor="middle">~13KB total</text>
+  <text x="1305" y="500" style="font: 11px sans-serif; fill: #856404;" text-anchor="middle">Synthetic Data</text>
+  
+  <path d="M 1230 460 L 430 790" style="stroke: #856404; stroke-width: 2; stroke-dasharray: 5,5; fill: none;"/>
+  
+  <!-- Hardware Requirements Box -->
+  <rect x="50" y="410" width="200" height="120" style="fill: #d4edda; stroke: #155724; stroke-width: 2; rx: 8;"/>
+  <text x="150" y="435" style="font: bold 14px sans-serif; fill: #155724;" text-anchor="middle">⚙️ Hardware</text>
+  <text x="150" y="460" style="font: 11px sans-serif; fill: #155724;" text-anchor="middle">Ryzen 9 9950X</text>
+  <text x="150" y="478" style="font: 11px sans-serif; fill: #155724;" text-anchor="middle">RTX 5080 16GB</text>
+  <text x="150" y="496" style="font: 11px sans-serif; fill: #155724;" text-anchor="middle">64GB RAM</text>
+  <text x="150" y="514" style="font: 11px sans-serif; fill: #155724;" text-anchor="middle">WSL2 Ubuntu</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="960" width="1300" height="30" style="fill: rgba(255,255,255,0.1); rx: 6;"/>
+  <text x="700" y="980" style="font: 12px sans-serif; fill: white;" text-anchor="middle">🔵 Blue = NHS Branded Components • ⚪ White = AI/ML Components • 🟡 Yellow = Data Layer • 🟢 Green = Infrastructure</text>
+  
+</svg>
