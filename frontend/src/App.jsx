@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 
@@ -7,13 +7,30 @@ function App() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [stats, setStats] = useState({ chunks: 0, policies: 0 })
+
+  // Load stats on mount
+  useEffect(() => {
+    fetchStats()
+  }, [])
+
+  const fetchStats = async () => {
+    try {
+      const response = await axios.get('/api/stats')
+      setStats({
+        chunks: response.data.total_chunks,
+        policies: 10
+      })
+    } catch (err) {
+      console.error('Failed to load stats:', err)
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     
     if (!question.trim()) return
 
-    // Add user question to chat
     const userMessage = { type: 'user', text: question }
     setMessages(prev => [...prev, userMessage])
     setQuestion('')
@@ -21,12 +38,10 @@ function App() {
     setError(null)
 
     try {
-      // Call API
       const response = await axios.post('/api/ask', {
         question: question
       })
 
-      // Add AI response to chat
       const aiMessage = {
         type: 'ai',
         text: response.data.answer,
@@ -65,18 +80,104 @@ function App() {
       <div className="chat-container">
         {messages.length === 0 ? (
           <div className="welcome-screen">
-            <h2>👋 Welcome!</h2>
-            <p>Ask me anything about NHS ICT HR policies. Try one of these:</p>
-            <div className="example-questions">
-              {exampleQuestions.map((q, i) => (
-                <button
-                  key={i}
-                  className="example-btn"
-                  onClick={() => setQuestion(q)}
-                >
-                  {q}
-                </button>
-              ))}
+            {/* Hero Section */}
+            <div className="hero-section">
+              <h2>👋 Welcome to Your AI HR Assistant!</h2>
+              <p className="hero-description">
+                Powered by advanced AI, this assistant searches through all NHS ICT HR policies 
+                to give you accurate, instant answers with source citations.
+              </p>
+            </div>
+
+            {/* Animated Stats */}
+            <div className="stats-grid">
+              <div className="stat-card">
+                <div className="stat-number">
+                  <AnimatedCounter end={stats.chunks} />
+                </div>
+                <div className="stat-label">Policy Chunks Indexed</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">
+                  <AnimatedCounter end={stats.policies} />
+                </div>
+                <div className="stat-label">HR Policies Loaded</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">⚡</div>
+                <div className="stat-label">Instant Answers</div>
+              </div>
+            </div>
+
+            {/* How It Works */}
+            <div className="how-it-works">
+              <h3>🔍 How It Works</h3>
+              <div className="steps-grid">
+                <div className="step">
+                  <div className="step-number">1</div>
+                  <div className="step-content">
+                    <h4>Ask Your Question</h4>
+                    <p>Type any HR policy question in plain English</p>
+                  </div>
+                </div>
+                <div className="step-arrow">→</div>
+                <div className="step">
+                  <div className="step-number">2</div>
+                  <div className="step-content">
+                    <h4>AI Searches Policies</h4>
+                    <p>Semantic search finds relevant sections</p>
+                  </div>
+                </div>
+                <div className="step-arrow">→</div>
+                <div className="step">
+                  <div className="step-number">3</div>
+                  <div className="step-content">
+                    <h4>Get Cited Answer</h4>
+                    <p>AI generates answer with source references</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Example Questions */}
+            <div className="examples-section">
+              <h3>💬 Try Asking...</h3>
+              <div className="example-questions">
+                {exampleQuestions.map((q, i) => (
+                  <button
+                    key={i}
+                    className="example-btn"
+                    onClick={() => setQuestion(q)}
+                  >
+                    <span className="example-icon">💡</span>
+                    {q}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Features */}
+            <div className="features-grid">
+              <div className="feature">
+                <span className="feature-icon">🎯</span>
+                <h4>Accurate</h4>
+                <p>Answers based only on official policies</p>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">📚</span>
+                <h4>Cited</h4>
+                <p>Every answer shows its source</p>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">⚡</span>
+                <h4>Fast</h4>
+                <p>Get answers in seconds</p>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">🔒</span>
+                <h4>Private</h4>
+                <p>Runs locally on your machine</p>
+              </div>
             </div>
           </div>
         ) : (
@@ -96,7 +197,7 @@ function App() {
                       <div key={j} className="source-item">
                         <span className="source-name">{source.source}</span>
                         <span className="source-relevance">
-                          {(1 - source.distance).toFixed(2)}% relevant
+                          {((1 - source.distance) * 100).toFixed(0)}% relevant
                         </span>
                       </div>
                     ))}
@@ -147,11 +248,38 @@ function App() {
 
       {/* Footer */}
       <div className="footer">
-        <p>💡 Powered by Llama 3.1 8B • ChromaDB • FastAPI</p>
-        <p className="disclaimer">This is a demonstration system using synthetic policy documents</p>
+        <p>💡 Powered by Llama 3.1 8B • ChromaDB • FastAPI • React</p>
+        <p className="disclaimer">AI Engineering Apprenticeship POC • Synthetic Policy Documents</p>
       </div>
     </div>
   )
+}
+
+// Animated Counter Component
+function AnimatedCounter({ end, duration = 2000 }) {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    let startTime
+    let animationFrame
+
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime
+      const progress = (currentTime - startTime) / duration
+
+      if (progress < 1) {
+        setCount(Math.floor(end * progress))
+        animationFrame = requestAnimationFrame(animate)
+      } else {
+        setCount(end)
+      }
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationFrame)
+  }, [end, duration])
+
+  return <span>{count}</span>
 }
 
 export default App
