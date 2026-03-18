@@ -1,0 +1,32 @@
+NHS TRUST ICT DEPARTMENT
+ON-CALL POLICY
+Policy Reference: HR-ICT-012
+Effective Date: January 2024
+
+1. POLICY STATEMENT
+Establishes fair on-call arrangements for ICT staff providing out-of-hours support for critical NHS services.
+
+2. ON-CALL ALLOWANCE
+Primary on-call: £250 per week
+Secondary on-call: £150 per week
+Bank Holiday weeks: Additional 50% premium
+Christmas/New Year weeks: Double rate
+
+3. CALL-OUT PAYMENTS
+Remote call-out: Minimum 1 hour at time-and-a-half
+On-site attendance: Minimum 4 hours at double-time
+Travel time paid at standard rate, mileage 45p/mile
+
+4. RESPONSE TIME REQUIREMENTS
+P1 Critical: Acknowledge 15 mins, action 30 mins
+P2 Major: Acknowledge 30 mins, action 1 hour
+P3 Minor: Next working day
+
+5. AVAILABILITY REQUIREMENTS
+Must be: Contactable within 5 mins, able to access VPN within 15 mins, within 30 mins of home, fit to work
+
+6. HEALTH AND WELLBEING
+If called out overnight 2+ hours: Late start permitted next day
+If called out 4+ hours: Day off permitted
+
+Contact: ict.oncall@nhstrust.nhs.uk

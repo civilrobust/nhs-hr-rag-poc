@@ -18,7 +18,7 @@ function App() {
       const response = await axios.get('/api/stats')
       setStats({
         chunks: response.data.total_chunks,
-        policies: 10
+        policies: response.data.policies_loaded
       })
     } catch (err) {
       console.error('Failed to load stats:', err)

@@ -1,0 +1,30 @@
+NHS TRUST ICT DEPARTMENT
+IT EQUIPMENT POLICY
+Policy Reference: HR-ICT-011
+Effective Date: January 2024
+
+1. POLICY STATEMENT
+This policy outlines the provision, use, and return of IT equipment issued to ICT Department staff.
+
+2. STANDARD EQUIPMENT ALLOCATION
+Desktop Staff: Dell OptiPlex desktop, dual 24-inch monitors, keyboard, mouse, docking station
+Mobile/Hybrid Staff: Dell Latitude laptop (i5, 16GB RAM), laptop bag, external mouse, USB-C dock
+All Staff: Microsoft Office 365 license, VPN access, MFA token
+
+3. MOBILE PHONES
+Issued based on role:
+- On-call staff: iPhone or Samsung Galaxy (current model -1)
+- Senior managers (Band 7+): Smartphone with data plan
+- Monthly data: 10GB standard, 20GB senior roles
+
+4. HOME WORKING EQUIPMENT
+Entitled to: Laptop, docking station, external monitor (on request), keyboard, mouse
+Home broadband requirement: 30Mbps minimum
+
+5. SECURITY REQUIREMENTS
+Must: Lock screen when away, never share passwords, report lost/stolen within 2 hours, use VPN for remote access, encrypt sensitive data
+
+6. LEAVING THE TRUST
+All equipment returned within final working day. Final salary not processed until equipment returned.
+
+Contact: ict.servicedesk@nhstrust.nhs.uk

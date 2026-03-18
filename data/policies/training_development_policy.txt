@@ -1,0 +1,33 @@
+NHS TRUST ICT DEPARTMENT
+TRAINING & PROFESSIONAL DEVELOPMENT POLICY
+Policy Reference: HR-ICT-013
+Effective Date: January 2024
+
+1. ANNUAL TRAINING BUDGET
+Band 3-4: £500 per annum
+Band 5: £750 per annum
+Band 6: £1,000 per annum
+Band 7: £1,500 per annum
+Band 8+: £2,000 per annum
+
+2. TYPES SUPPORTED
+Mandatory Training: 100% funded (IG, Data Security, Fire Safety)
+Technical Certifications: Microsoft, Cisco, AWS, CompTIA (from individual budget)
+Professional Development: Leadership, ITIL, PRINCE2, Agile (from individual budget)
+
+3. STUDY LEAVE
+Up to 5 days paid study leave per year for approved training
+Includes examination days
+First exam resit: Paid study leave
+Subsequent resits: Annual leave
+
+4. DEGREE-LEVEL SPONSORSHIP
+Eligibility: 2+ years service, satisfactory performance
+Financial support: Up to 50% tuition (max £4,000/year)
+Study leave: Up to 10 days/year paid
+Payback clause: Leave within 1 year = repay 100%, within 2 years = 50%
+
+5. PROFESSIONAL MEMBERSHIPS
+BCS, CITP, CISSP memberships funded if relevant to role
+
+Contact: ict.training@nhstrust.nhs.uk

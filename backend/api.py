@@ -65,7 +65,7 @@ async def get_stats():
     """Get system statistics"""
     return {
         "total_chunks": rag.collection.count(),
-        "policies_loaded": len([f for f in rag.client.list_collections()]),
+        "policies_loaded": rag.num_documents,
         "model": "llama3.1:8b"
     }
 
