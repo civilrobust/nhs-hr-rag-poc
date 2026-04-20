@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import './App.css'
 
@@ -8,18 +8,17 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [stats, setStats] = useState({ chunks: 0, policies: 0 })
+  const messagesEndRef = useRef(null)
 
+  useEffect(() => { fetchStats() }, [])
   useEffect(() => {
-    fetchStats()
-  }, [])
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, loading])
 
   const fetchStats = async () => {
     try {
       const response = await axios.get('/api/stats')
-      setStats({
-        chunks: response.data.total_chunks,
-        policies: response.data.policies_loaded
-      })
+      setStats({ chunks: response.data.total_chunks, policies: response.data.policies_loaded })
     } catch (err) {
       console.error('Failed to load stats:', err)
     }
@@ -27,30 +26,21 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
     if (!question.trim()) return
-
     const userMessage = { type: 'user', text: question }
     setMessages(prev => [...prev, userMessage])
     setQuestion('')
     setLoading(true)
     setError(null)
-
     try {
-      const response = await axios.post('/api/ask', {
-        question: question
-      })
-
-      const aiMessage = {
+      const response = await axios.post('/api/ask', { question })
+      setMessages(prev => [...prev, {
         type: 'ai',
         text: response.data.answer,
         sources: response.data.sources
-      }
-      setMessages(prev => [...prev, aiMessage])
-
+      }])
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to get answer. Is the backend running?')
-      console.error('Error:', err)
     } finally {
       setLoading(false)
     }
@@ -71,203 +61,126 @@ function App() {
   ]
 
   return (
-    <div className="app-container">
-      <div className="header">
-        {messages.length > 0 && (
-          <button className="new-chat-btn" onClick={handleNewChat}>
-            ← New Chat
-          </button>
-        )}
-        <div className="nhs-logo">
+    <div className="app-shell">
+      {/* LEFT PANEL */}
+      <div className="left-panel">
+        <div className="left-top">
           <div className="nhs-logo-box">NHS</div>
+          <h1>HR Policy Assistant</h1>
+          <p className="subtitle">King's College Hospital NHS Foundation Trust</p>
         </div>
-        <h1>NHS ICT HR Policy Assistant</h1>
-        <p className="subtitle">Ask questions about HR policies and get instant answers</p>
+
+        <div className="stats-row">
+          <div className="stat-item">
+            <div className="stat-number"><AnimatedCounter end={stats.chunks} /></div>
+            <div className="stat-label">Policy Chunks</div>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat-item">
+            <div className="stat-number"><AnimatedCounter end={stats.policies} /></div>
+            <div className="stat-label">HR Policies</div>
+          </div>
+          <div className="stat-divider" />
+          <div className="stat-item">
+            <div className="stat-number">⚡</div>
+            <div className="stat-label">Instant</div>
+          </div>
+        </div>
+
+        <div className="how-it-works">
+          <div className="how-title">How it works</div>
+          <div className="step-item"><span className="step-num">1</span><span>Ask in plain English</span></div>
+          <div className="step-item"><span className="step-num">2</span><span>AI searches all policies</span></div>
+          <div className="step-item"><span className="step-num">3</span><span>Get cited answer</span></div>
+        </div>
+
+        <div className="examples-section">
+          <div className="examples-title">Try asking...</div>
+          {exampleQuestions.map((q, i) => (
+            <button key={i} className="example-btn" onClick={() => setQuestion(q)}>
+              💡 {q}
+            </button>
+          ))}
+        </div>
+
+        <div className="left-footer">
+          <div className="feature-pills">
+            <span>🎯 Accurate</span>
+            <span>📚 Cited</span>
+            <span>🔒 Private</span>
+          </div>
+          <p className="powered-by">Llama 3.1 8B • ChromaDB • FastAPI</p>
+        </div>
       </div>
 
-      <div className="chat-container">
-        {messages.length === 0 ? (
-          <div className="welcome-screen">
-            <div className="hero-section">
-              <h2>👋 Welcome to Your AI HR Assistant!</h2>
-              <p className="hero-description">
-                Powered by advanced AI, this assistant searches through all NHS ICT HR policies 
-                to give you accurate, instant answers with source citations.
-              </p>
-            </div>
+      {/* RIGHT PANEL */}
+      <div className="right-panel">
+        <div className="chat-header">
+          <span>💬 Chat</span>
+          {messages.length > 0 && (
+            <button className="new-chat-btn" onClick={handleNewChat}>← New Chat</button>
+          )}
+        </div>
 
-            <div className="stats-grid">
-              <div className="stat-card">
-                <div className="stat-number">
-                  <AnimatedCounter end={stats.chunks} />
-                </div>
-                <div className="stat-label">Policy Chunks Indexed</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">
-                  <AnimatedCounter end={stats.policies} />
-                </div>
-                <div className="stat-label">HR Policies Loaded</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">⚡</div>
-                <div className="stat-label">Instant Answers</div>
-              </div>
+        <div className="chat-area">
+          {messages.length === 0 && !loading && (
+            <div className="empty-state">
+              <div className="empty-icon">🏥</div>
+              <p>Ask any question about NHS ICT HR policies and get an instant cited answer.</p>
             </div>
+          )}
 
-            <div className="how-it-works">
-              <h3>🔍 How It Works</h3>
-              <div className="steps-grid">
-                <div className="step">
-                  <div className="step-number">1</div>
-                  <div className="step-content">
-                    <h4>Ask Your Question</h4>
-                    <p>Type any HR policy question in plain English</p>
-                  </div>
-                </div>
-                <div className="step-arrow">→</div>
-                <div className="step">
-                  <div className="step-number">2</div>
-                  <div className="step-content">
-                    <h4>AI Searches Policies</h4>
-                    <p>Semantic search finds relevant sections</p>
-                  </div>
-                </div>
-                <div className="step-arrow">→</div>
-                <div className="step">
-                  <div className="step-number">3</div>
-                  <div className="step-content">
-                    <h4>Get Cited Answer</h4>
-                    <p>AI generates answer with source references</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="examples-section">
-              <h3>💬 Try Asking...</h3>
-              <div className="example-questions">
-                {exampleQuestions.map((q, i) => (
-                  <button
-                    key={i}
-                    className="example-btn"
-                    onClick={() => setQuestion(q)}
-                  >
-                    <span className="example-icon">💡</span>
-                    {q}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="features-grid">
-              <div className="feature">
-                <span className="feature-icon">🎯</span>
-                <h4>Accurate</h4>
-                <p>Answers based only on official policies</p>
-              </div>
-              <div className="feature">
-                <span className="feature-icon">📚</span>
-                <h4>Cited</h4>
-                <p>Every answer shows its source</p>
-              </div>
-              <div className="feature">
-                <span className="feature-icon">⚡</span>
-                <h4>Fast</h4>
-                <p>Get answers in seconds</p>
-              </div>
-              <div className="feature">
-                <span className="feature-icon">🔒</span>
-                <h4>Private</h4>
-                <p>Runs locally on your machine</p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="messages">
-            {messages.map((msg, i) => (
-              <div key={i} className={`message ${msg.type}`}>
-                <div className="message-header">
-                  {msg.type === 'user' ? '👤 You' : '🤖 HR Assistant'}
-                </div>
-                <div className="message-content">
-                  {msg.text}
-                </div>
-                {msg.sources && msg.sources.length > 0 && (
-                  <div className="sources">
-                    <div className="sources-header">
-                      📄 Referenced Policy Sections
-                      <span className="sources-hint">
-                        Answer based on {msg.sources.length} section{msg.sources.length > 1 ? 's' : ''} from official HR policies
-                      </span>
+          {messages.map((msg, i) => (
+            <div key={i} className={`message ${msg.type}`}>
+              <div className="message-label">{msg.type === 'user' ? '👤 You' : '🤖 HR Assistant'}</div>
+              <div className="message-bubble">{msg.text}</div>
+              {msg.sources && msg.sources.length > 0 && (
+                <div className="sources">
+                  <div className="sources-title">📄 Sources</div>
+                  {Object.entries(
+                    msg.sources.reduce((acc, s) => {
+                      acc[s.source] = (acc[s.source] || 0) + 1
+                      return acc
+                    }, {})
+                  ).map(([filename, count]) => (
+                    <div key={filename} className="source-chip">
+                      {filename.replace(/_/g, ' ').replace('.txt', '')}
+                      {count > 1 && <span className="source-count">{count}</span>}
                     </div>
-                    {(() => {
-                      const grouped = msg.sources.reduce((acc, source) => {
-                        if (!acc[source.source]) {
-                          acc[source.source] = 0
-                        }
-                        acc[source.source]++
-                        return acc
-                      }, {})
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
 
-                      return Object.entries(grouped).map(([filename, count]) => (
-                        <div key={filename} className="source-group">
-                          <div className="source-filename">
-                            📄 {filename.replace(/_/g, ' ').replace('.txt', '')}
-                            {count > 1 && (
-                              <span className="section-count">{count} sections</span>
-                            )}
-                          </div>
-                        </div>
-                      ))
-                    })()}
-                  </div>
-                )}
-              </div>
-            ))}
-            {loading && (
-              <div className="message ai">
-                <div className="message-header">🤖 HR Assistant</div>
-                <div className="message-content">
-                  <div className="typing-indicator">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
+          {loading && (
+            <div className="message ai">
+              <div className="message-label">🤖 HR Assistant</div>
+              <div className="message-bubble">
+                <div className="typing-indicator">
+                  <span /><span /><span />
                 </div>
               </div>
-            )}
-          </div>
-        )}
+            </div>
+          )}
 
-        {error && (
-          <div className="error-message">
-            ⚠️ {error}
-          </div>
-        )}
-      </div>
+          {error && <div className="error-message">⚠️ {error}</div>}
+          <div ref={messagesEndRef} />
+        </div>
 
-      <form className="input-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          placeholder="Ask about sick leave, annual leave, remote working..."
-          className="question-input"
-          disabled={loading}
-        />
-        <button 
-          type="submit" 
-          className="submit-btn"
-          disabled={loading || !question.trim()}
-        >
-          {loading ? '⏳' : '🚀'} Ask
-        </button>
-      </form>
-
-      <div className="footer">
-        <p>💡 Powered by Llama 3.1 8B • ChromaDB • FastAPI • React</p>
-        <p className="disclaimer">AI Engineering Apprenticeship POC • Synthetic Policy Documents</p>
+        <form className="input-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="Ask about sick leave, annual leave, remote working..."
+            className="question-input"
+            disabled={loading}
+          />
+          <button type="submit" className="submit-btn" disabled={loading || !question.trim()}>
+            {loading ? '⏳' : '🚀'} Ask
+          </button>
+        </form>
       </div>
     </div>
   )
@@ -275,15 +188,11 @@ function App() {
 
 function AnimatedCounter({ end, duration = 2000 }) {
   const [count, setCount] = useState(0)
-
   useEffect(() => {
-    let startTime
-    let animationFrame
-
+    let startTime, animationFrame
     const animate = (currentTime) => {
       if (!startTime) startTime = currentTime
       const progress = (currentTime - startTime) / duration
-
       if (progress < 1) {
         setCount(Math.floor(end * progress))
         animationFrame = requestAnimationFrame(animate)
@@ -291,11 +200,9 @@ function AnimatedCounter({ end, duration = 2000 }) {
         setCount(end)
       }
     }
-
     animationFrame = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(animationFrame)
   }, [end, duration])
-
   return <span>{count}</span>
 }
 
